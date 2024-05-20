@@ -1,3 +1,4 @@
+# Use an official Node runtime as a parent image
 FROM node:18-alpine
 
 USER root
@@ -13,8 +14,11 @@ RUN apk add --no-cache chromium
 ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-# You can install a specific version like: flowise@1.0.0
+# Install Flowise
 RUN npm install -g flowise
+
+# Install PostgreSQL client for Node.js
+RUN npm install pg
 
 WORKDIR /data
 
